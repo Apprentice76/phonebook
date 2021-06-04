@@ -1,0 +1,31 @@
+{
+    "name": "part3",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "deploy": "git push -u heroku main",
+        "dev": "nodemon index.js",
+        "bimp": "rm -rf build && cp -rv ../../frontend/root/build ./",
+        "stage": "git add -A && git commit -m 'staging'",
+        "exp": "cp -rvf .env index.js requests.rest package.json mongo.js build models",
+        "imp": "cp -rvft ./",
+        "send": "rm -rf ../root/build ../root/models && cp -rvf ./ ../root/",
+        "update": "cp -vft ./ ../root/*.* && cp -rft ./ ../root/build ../root/models"
+    },
+    "author": "Hritwik Som",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "mongoose": "^5.12.12",
+        "mongoose-unique-validator": "^2.0.3",
+        "morgan": "^1.10.0"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.7"
+    }
+}
