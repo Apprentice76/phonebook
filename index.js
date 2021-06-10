@@ -6,58 +6,13 @@ const cors = require("cors");
 
 const Person = require("./models/person");
 
-// let persons = [
-//     {
-//         name: "Arto Hellas",
-//         number: "040-123456",
-//         id: 1,
-//     },
-//     {
-//         name: "Fvhjbk",
-//         number: "",
-//         id: 5,
-//     },
-//     {
-//         name: "Whbefkjwn",
-//         number: "u43i4tipo4",
-//         id: 7,
-//     },
-//     {
-//         name: "Frhbj",
-//         number: "634198",
-//         id: 8,
-//     },
-//     {
-//         name: "Ehh",
-//         number: "63e19870",
-//         id: 9,
-//     },
-//     {
-//         name: "Eyyf",
-//         number: "465",
-//         id: 11,
-//     },
-//     {
-//         name: "Dhfvjhb",
-//         number: "476",
-//         id: 12,
-//     },
-// ];
-
 // Initialising express
 const app = express();
 app.use(express.static("build"));
 app.use(cors());
 app.use(express.json());
 
-// // logger middleware
-// const requestLogger = (req, _, next) => {
-//     console.log("Method: ", req.method);
-//     console.log("Path: ", req.path);
-//     console.log("Body: ", req.body);
-//     console.log("---");
-//     next();
-// };
+// logger middleware
 
 morgan.token("body", (req, _) =>
     JSON.stringify(req.body) === "{}" ? " " : JSON.stringify(req.body)
@@ -200,7 +155,7 @@ app.put("/api/persons/:id", (req, res, next) => {
         name: body.name,
         number: body.number,
     };
-    Person.findByIdAndUpdate(req.params.id, person, { new: true, runValidators: true })
+    Person.findByIdAndUpdate(req.params.id, person, { new: true})
         .then((updated) => res.json(updated))
         .catch((e) => next(e));
 });
