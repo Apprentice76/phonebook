@@ -1,0 +1,26 @@
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name" : "sdnk",
+    "number": "4e55u5rr"
+}
+###
+PUT http://localhost:3001/api/persons/603f70c7509ea41868f368bc 
+Content-Type: application/json
+
+{
+    "name": "dcggh",
+    "number": "4654473"
+}
+###
+GET http://localhost:3001/api/persons HTTP/1.1
+
+###
+GET http://localhost:3001/api/persons/603f598ab3315437bc88e356 HTTP/1.1
+
+###
+GET http://localhost:3001/info HTTP/1.1
+
+###
+DELETE  http://localhost:3001/api/persons/603f6be54cbda653c82e8e0c

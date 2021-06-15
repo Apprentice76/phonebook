@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 // const user = process.argv[2];
 // const password = process.argv[3];
-let user = "client-side";
-let password = "asdfghjkl";
+// const user = "client-side";
+// const password = "asdfghjkl";
 
-const url = `mongodb+srv://${user}:${password}@cluster0.i4xit.mongodb.net/phonebook?retryWrites=true`;
+const url = process.env.MONGODB_URI;
 
 mongoose.connect(url, {
     useNewUrlParser: true,
@@ -21,6 +21,7 @@ const personSchema = new mongoose.Schema({
 });
 
 const Person = mongoose.model("Person", personSchema);
+console.log(process.argv);
 
 if (process.argv.length > 2) {
     const name = process.argv[2];

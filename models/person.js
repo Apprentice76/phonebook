@@ -1,6 +1,5 @@
-const mongoose = require("mongoose");
-const validator = require("mongoose-unique-validator");
-
+const mongoose = require('mongoose');
+const validator = require('mongoose-unique-validator');
 
 const uri = process.env.MONGODB_URI;
 
@@ -11,8 +10,8 @@ mongoose
         useFindAndModify: false,
         useCreateIndex: true,
     })
-    .then(() => console.log("db connected"))
-    .catch((e) => console.log("error connecting db", e));;
+    .then(() => console.log('db connected'))
+    .catch((e) => console.log('error connecting db', e));
 
 const personSchema = new mongoose.Schema({
     name: {
@@ -23,7 +22,7 @@ const personSchema = new mongoose.Schema({
     },
     number: {
         type: String,
-        minlength: 8,
+        minlength: 6,
         required: true,
     },
 });
@@ -35,7 +34,9 @@ personSchema.set('toJSON', {
         retObj.id = retObj._id.toString();
         delete retObj._id;
         delete retObj.__v;
-    }
-})
+    },
+});
 
-module.exports = mongoose.model('Person', personSchema);
+const Person = mongoose.model('Person', personSchema);
+
+module.exports = { Person, mongoose };
