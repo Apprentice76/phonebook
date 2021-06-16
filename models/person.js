@@ -1,18 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('mongoose-unique-validator');
 
-const uri = process.env.MONGODB_URI;
-
-mongoose
-    .connect(uri, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false,
-        useCreateIndex: true,
-    })
-    .then(() => console.log('db connected'))
-    .catch((e) => console.log('error connecting db', e));
-
 const personSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -27,7 +15,15 @@ const personSchema = new mongoose.Schema({
     },
 });
 
-personSchema.plugin(validator);
+const kind = (kind, path) => {
+    if (kind === 'minLength') {
+        return `ValidatorError: ${path} is shorter than the minimum allowed length.`;
+    } else if (kind === 'unique') {
+        return `ValidatorError: expected ${path} to be unique.`;
+    }
+};
+
+personSchema.plugin(validator, { message: 'check' });
 
 personSchema.set('toJSON', {
     transform: (_, retObj) => {
@@ -39,4 +35,4 @@ personSchema.set('toJSON', {
 
 const Person = mongoose.model('Person', personSchema);
 
-module.exports = { Person, mongoose };
+module.exports = Person;

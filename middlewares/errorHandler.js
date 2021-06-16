@@ -1,11 +1,11 @@
-const errorHandler = (error, request, response, next) => {
-    console.error(error.message);
+const errorHandler = (e, request, response, next) => {
+    console.error("Error:", e.message, e.errors);
 
-    if (error.name === 'CastError') {
-        return response.status(400).send({ error: 'malformatted id' });
-    }
+    // 1. Person validation failed: name: Path `name` (`t`) is shorter than the minimum allowed length (3). minlength
 
-    next(error);
+    // 2. 
+    
+    next();
 };
 
 module.exports = errorHandler;
