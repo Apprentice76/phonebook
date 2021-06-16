@@ -23,9 +23,9 @@ app.use(errorHandler);
 //     res.send("<h1>Go to /api/persons</h1>");
 // });
 
-const uri = process.env.MONGODB_URI;
+const uri = 'mongodb+srv://client-side:asdfghjkl@cluster0.i4xit.mongodb.net/phonebook?retryWrites=true';
 
-const PORT = process.env.MDB_PORT || 3001;
+const PORT = 3001;
 const server = app.listen(PORT, () =>
     console.log(`Server running on port: ${PORT}`)
 );
