@@ -1,3 +1,16 @@
+###
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name" : "t",
+    "number": ""
+}
+
+# name as lesser length 
+
+
+###
 POST http://localhost:3001/api/persons
 Content-Type: application/json
 
@@ -5,6 +18,31 @@ Content-Type: application/json
     "name" : "tt",
     "number": "5876"
 }
+
+# Both as lesser length
+
+###
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name" : "hex",
+    "number": "5876"
+}
+
+# uniqueness
+
+###
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name" : "hex",
+    "number": "587667395"
+}
+
+# Invalid uniqueness
+
 ###
 PUT http://localhost:3001/api/persons/603f70c7509ea41868f368bc 
 Content-Type: application/json

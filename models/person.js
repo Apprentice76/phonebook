@@ -15,15 +15,7 @@ const personSchema = new mongoose.Schema({
     },
 });
 
-const kind = (kind, path) => {
-    if (kind === 'minLength') {
-        return `ValidatorError: ${path} is shorter than the minimum allowed length.`;
-    } else if (kind === 'unique') {
-        return `ValidatorError: expected ${path} to be unique.`;
-    }
-};
-
-personSchema.plugin(validator, { message: 'check' });
+personSchema.plugin(validator);
 
 personSchema.set('toJSON', {
     transform: (_, retObj) => {

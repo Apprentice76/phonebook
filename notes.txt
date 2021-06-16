@@ -1,0 +1,7 @@
+e.errors.
+
+-> name / number (-> properties -> minLength)
+
+kind: Type
+path: field
+value: field_val

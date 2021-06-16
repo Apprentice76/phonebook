@@ -38,42 +38,26 @@ router.delete('/api/persons/:id', (req, res, next) => {
         .catch((e) => next(e));
 });
 
-// curl -X POST -H "Content-Type: routerlication/json" -d '{"content": "linuxize", "important": true}'  http://localhost:2000/api/persons
 router.post('/api/persons', (req, res, next) => {
     const body = req.body;
 
     if (!body || !body.name || !body.number) {
-        return res.status(400).json({
-            error: 'content missing',
-        });
+        console.error(`Error: Content missing in one or multiple fields.`);
+        return res.status(400)
+            .json({
+                error: 'Error: Content missing in one or multiple fields.',
+            })
+            .end();
     }
 
-    Person.find({ name: body.name })
-        .then((exist) => {
-            if (exist.length > 0) {
-                console.log(exist);
-                res.status(400).json({
-                    error: 'name already exists',
-                });
-                next('/api/persons');
-            } else {
-                try {
-                    const person = new Person({
-                        name: body.name,
-                        number: body.number,
-                    });
-                    person
-                        .save()
-                        .then((saved) => res.json(saved))
-                        .catch((e) => next(e));
-                } catch (e) {
-                    console.log("Caught");
-                }
-            }
-        })
-        .catch((e) => {
-            next(e);
-        });
+    const person = new Person({
+        name: body.name,
+        number: body.number,
+    });
+    person
+        .save()
+        .then((saved) => res.json(saved))
+        .catch((e) => next(e));
 });
 
 router.put('/api/persons/:id', (req, res, next) => {
