@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Person = require('./models/person');
 const app = require('./app');
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.MDB_PORT || 3001;
 
 const server = app.listen(PORT, () =>
     console.log(`Server running on port: ${PORT}`)
