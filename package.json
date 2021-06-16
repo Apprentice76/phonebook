@@ -1,6 +1,6 @@
 {
-    "name": "part3",
-    "version": "1.0.0",
+    "name": "phonebook",
+    "version": "1.4.0",
     "description": "",
     "main": "index.js",
     "scripts": {

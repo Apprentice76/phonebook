@@ -1,34 +1,14 @@
-require('dotenv').config();
-
-const express = require('express');
-const cors = require('cors');
 const mongoose = require('mongoose');
-const errorHandler = require('./middlewares/errorHandler');
-const unknownEndpoint = require('./middlewares/unknownEndpoint');
-const morgan = require('./middlewares/morgan');
 const Person = require('./models/person');
-const router = require('./controllers/router');
-
-const app = express();
-// Initialising express middlewares
-app.use(express.static('build'));
-app.use(cors());
-app.use(express.json());
-app.use(morgan);
-app.use('', router);
-app.use(unknownEndpoint);
-app.use(errorHandler);
-
-// app.get("/", (_, res) => {
-//     res.send("<h1>Go to /api/persons</h1>");
-// });
-
-const uri = process.env.MONGODB_URI;
+const app = require('./app');
 
 const PORT = process.env.PORT || 3001;
+
 const server = app.listen(PORT, () =>
     console.log(`Server running on port: ${PORT}`)
 );
+
+const uri = process.env.MONGODB_URI;
 
 mongoose
     .connect(uri, {
@@ -42,6 +22,7 @@ mongoose
         console.log('error connecting db', e);
         server.close();
     });
+
 // arg check
 if (process.argv.length > 2) {
     // console.log(process.argv);
