@@ -7,7 +7,9 @@ https://phonebook-db.herokuapp.com/
 
 # Change Log:
 
-[v2.2] most recent, improved UI of app and hosted on heroku
+[v2.3] (heroku) fixed some bugs on front-end, hosted on heroku
+
+[v2.2] most recent, improved UI of app
 
 [v2.1] made separate files for express config (app.js) and index.js
 
